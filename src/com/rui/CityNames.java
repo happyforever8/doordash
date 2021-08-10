@@ -74,21 +74,43 @@ public class CityNames {
             City city = cityCoordinate.get(q);
             // 如果距离相等，选lexical 小的那个。
             PriorityQueue<City> pq = new PriorityQueue<>((a, b) -> distance(a, city).compareTo(distance(b, city) == 0 ? a.name.compareTo(b.name) :  distance(a, city).compareTo(distance(b, city))));
-            String r = null;
-            Map.Entry<Integer, String> prevXEntry = sameX.get(city.x).floorEntry(city.y);
-            pq.offer(new City(city.x, prevXEntry.getKey(), prevXEntry.getValue()));
+            Map.Entry<Integer, String> prevXEntry = sameX.get(city.x).lowerEntry(city.y);
+            if (prevXEntry != null){
+                pq.offer(new City(city.x, prevXEntry.getKey(), prevXEntry.getValue()));
+            }
+            Map.Entry<Integer, String> nextXEntry = sameX.get(city.x).higherEntry(city.y);
+            if (nextXEntry != null){
+                pq.offer(new City(city.x, nextXEntry.getKey(), nextXEntry.getValue()));
+            }
 
-            Map.Entry<Integer, String> nextXEntry = sameX.get(city.x).ceilingEntry(city.y);
-            pq.offer(new City(city.x, nextXEntry.getKey(), nextXEntry.getValue()));
-
-            Map.Entry<Integer, String> prevYEntry = sameY.get(city.y).floorEntry(city.x);
-            pq.offer(new City(city.x, prevYEntry.getKey(), prevYEntry.getValue()));
-
-            Map.Entry<Integer, String> nextYEntry = sameY.get(city.y).ceilingEntry(city.x);
-            pq.offer(new City(city.x, nextYEntry.getKey(), nextYEntry.getValue()));
+            Map.Entry<Integer, String> prevYEntry = sameY.get(city.y).lowerEntry(city.x);
+            if (prevYEntry != null){
+                pq.offer(new City(city.x, prevYEntry.getKey(), prevYEntry.getValue()));
+            }
+            Map.Entry<Integer, String> nextYEntry = sameY.get(city.y).higherEntry(city.x);
+            if (nextYEntry != null){
+                pq.offer(new City(city.x, nextYEntry.getKey(), nextYEntry.getValue()));
+            }
             res.add(pq.poll().name);
         }
         return res;
     }
+
+    // 这里补充一个leetcode 1779
+    private int nearestValidPoint(int x, int y, int[][] points) {
+        int dis = Integer.MAX_VALUE, index = points.length;
+        for (int i = 0; i < points.length; i++) {
+            int[] p = points[i];
+            if (p[0] == x || p[1] == y) {
+                int d = Math.abs(x - p[0]) + Math.abs(y - p[1]);
+                if (d < dis) {
+                    index = i;
+                    dis = d;
+                }
+            }
+        }
+        return index == points.length ? -1 : index;
+    }
+
 
 }
