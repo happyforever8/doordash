@@ -19,17 +19,20 @@ public class TwoTreeNodeDifference {
      * 4。 children 的顺序不一样，但是内容一样，算不算做相同的node
      * 5。 这个不一样的节点差异，是算两棵树的，还是算一棵树的？当前解法是算两棵树的。
      * */
-
+    // 这个题还有一个变化是加了个active
     // 思路：
     // 同时dfs 两棵树，如果遇到不一样的节点，那么直接分别计算每棵树从当前节点开始的子树的node 数量。
     class TreeNode { // 这个是定义好的
         int value;
         int key;
         List<TreeNode> children;
-        public TreeNode (int key, int value) {
+        boolean active;
+        public TreeNode (int key, int value, boolean active) {
             this.key = key;
             this.value = value;
             this.children = new ArrayList<>();
+            // 这个active 是后来加的
+            this.active = active;
         }
     }
 
@@ -40,7 +43,7 @@ public class TwoTreeNodeDifference {
             return countNode(root2);
         } else if (root2 == null) {
             return countNode(root1);
-        } else if (root1.key != root2.key) {
+        } else if (root1.key != root2.key || root1.active != root2.active) {
             return countNode(root1) + countNode(root2);
         }
 
