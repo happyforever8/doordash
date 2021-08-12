@@ -31,13 +31,13 @@ public class PackageDependency {
 
     // 解法就是，首先找到这个dependency 所在的连通区域，然后从dependency 出发，按照dependency 的顺序，找到所有的节点。再从把图翻过来。容这些节点出发，直到走到这个package
 
-    public List<String> findDependencies (Map<String, List<String>> dependencies, String pack) {
-        Map<String, List<String>> graph = new HashMap<>();
-        dfs (dependencies, graph, pack);
-    }
-
-    private void dfs ((Map<String, List<String>> dependencies,  Map<String, List<String>> graph, String pack) {
-        List<>
-    }
+//    public List<String> findDependencies (Map<String, List<String>> dependencies, String pack) {
+//        Map<String, List<String>> graph = new HashMap<>();
+//        dfs (dependencies, graph, pack);
+//    }
+//
+//    private void dfs ((Map<String, List<String>> dependencies,  Map<String, List<String>> graph, String pack) {
+//        List<>
+//    }
 
 }

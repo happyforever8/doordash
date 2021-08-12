@@ -1,9 +1,6 @@
 package com.rui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TwoTreeNodeDifference {
     // 近期考了好多次
@@ -41,65 +38,69 @@ public class TwoTreeNodeDifference {
     }
     // 这个方法是用来判断两个tree 之间总共有多少个node 不一样，而不是相对于某一个tree
 
-    public int findDifferentNode (TreeNode root1, TreeNode root2) {
+    public int countDifferentNode (TreeNode root1, TreeNode root2) {
         if (root1 == null && root2 == null) {
             return 0;
         } else if (root1 == null) {
             return countNode(root2);
         } else if (root2 == null) {
             return countNode(root1);
-        } else if (!root1.key.equals(root2.key) || root1.active != root2.active || !root1.value.equals(root2.value)) { // 如果key 或者value
+        } else if (!root1.key.equals(root2.key) || root1.active != root2.active) { // 如果key 或者value
             return countNode(root1) + countNode(root2);
         }
 
         int count = 0;
-//        if (root1.value != root2.value) {
-//            count += 2;
-//        }
+        if (root1.value != root2.value) {
+            count += 1;
+        }
 
         // 为了确保所有的key 和value 都能对得上。
         // 我觉得排序不好。原因是，[1,2,3,4], [2,3,4] 这样[2,3,4] 不能对上
         // 所以要一个一个key 的匹配。
         // 1。 假设每个key 都不一样
-        //        Map<Integer, TreeNode> map = new HashMap<>();
-        //        for (TreeNode n : root2.children) {
-        //            map.put(n.key, n);
-        //        }
-        //
-        //        for (TreeNode n : root1.children) {
-        //            if (map.containsKey(n.key)) {
-        //                count += findDifferentNode(n, map.get(n.key));
-        //                map.remove(n.key);
-        //            } else {
-        //                count += countNode(n);
-        //            }
-        //        }
-        //        for (TreeNode v : map.values()){
-        //            count += countNode(v);
-        //        }
-
-        // 2. 如果key 有重复的
-        Map<String, List<TreeNode>> map = new HashMap<>();
-        for (TreeNode n : root2.children) {
-            map.putIfAbsent(n.key, new ArrayList<>());
-            map.get(n.key).add(n);
-        }
-        for (TreeNode n : root1.children) {
-            if (map.containsKey(n.key)) {
-                for (TreeNode t :  map.get(n.key)) {
-                    count += findDifferentNode(n, t);
+                Map<String, TreeNode> map = new HashMap<>();
+                for (TreeNode n : root2.children) {
+                    map.put(n.key, n);
                 }
-                map.remove(n.key);
-            } else {
-                // 这里要问一下面试官，只是统计当前node 还是整个子树都要算进去。如果只算当前节点。改成+1 就行了
-                count += countNode(n);
-            }
-        }
-        for (List<TreeNode> list : map.values()) {
-            for (TreeNode t :  list) {
-                count += countNode(t);
-            }
-        }
+//   for old_child in old_tree.children:
+//    ret += compute_diff(old_child, new_tree_childre‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌n.pop(old_child.key, None))
+//  for remaining_new_tree_child in new_tree_children.values():
+//    ret += get_node_count(remaining_new_tree_child)
+//  return ret
+                for (TreeNode n : root1.children) {
+                    if (map.containsKey(n.key)) {
+                        count += countDifferentNode(n, map.get(n.key));
+                        map.remove(n.key);
+                    } else {
+                        count += countNode(n);
+                    }
+                }
+                for (TreeNode v : map.values()){
+                    count += countNode(v);
+                }
+
+//        // 2. 如果key 有重复的
+//        Map<String, List<TreeNode>> map = new HashMap<>();
+//        for (TreeNode n : root2.children) {
+//            map.putIfAbsent(n.key, new ArrayList<>());
+//            map.get(n.key).add(n);
+//        }
+//        for (TreeNode n : root1.children) {
+//            if (map.containsKey(n.key)) {
+//                for (TreeNode t :  map.get(n.key)) {
+//                    count += countDifferentNode(n, t);
+//                }
+//                map.remove(n.key);
+//            } else {
+//                // 这里要问一下面试官，只是统计当前node 还是整个子树都要算进去。如果只算当前节点。改成+1 就行了
+//                count += countNode(n);
+//            }
+//        }
+//        for (List<TreeNode> list : map.values()) {
+//            for (TreeNode t :  list) {
+//                count += countNode(t);
+//            }
+//        }
 
 
         return count;
@@ -122,7 +123,7 @@ public class TwoTreeNodeDifference {
             return root1 == null && root2 == null ? 0 : 1;
         }
         int count = 0;
-        if (root1.active != root2.active || root1.value != root2.value || root1.key != root2.key) {
+        if (root1.active != root2.active || !root1.value.equals(root2.value) || !root1.key.equals(root2.key)) {
             count++;
         }
 
@@ -142,8 +143,8 @@ public class TwoTreeNodeDifference {
         return count;
     }
 
-    Map<Integer, TreeNode> extractTheChildren(TreeNode root) {
-        Map<Integer, TreeNode> map = new HashMap<>(); // <key, List<TreeNode>>, 因为并不知道key 是不是唯一的。
+    Map<String, TreeNode> extractTheChildren(TreeNode root) {
+        Map<String, TreeNode> map = new HashMap<>(); // <key, List<TreeNode>>, 因为并不知道key 是不是唯一的。
         if (root == null) {
             return map;
         }
