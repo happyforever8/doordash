@@ -6,8 +6,106 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        shorestPath();
+        testMenuComparation2();
+//        testMenu();
     }
+
+    private static void testMenuComparation2() {
+        MenuComparation menuComparation = new MenuComparation();
+        MenuComparation.TreeNode a = new MenuComparation.TreeNode("a", 1, true);
+        MenuComparation.TreeNode b = new MenuComparation.TreeNode("b", 2, true);
+        MenuComparation.TreeNode c = new MenuComparation.TreeNode("c", 3, true);
+        MenuComparation.TreeNode d = new MenuComparation.TreeNode("d", 4, true);
+        MenuComparation.TreeNode e = new MenuComparation.TreeNode("e", 5, true);
+        MenuComparation.TreeNode g = new MenuComparation.TreeNode("g", 7, true);
+        a.children.add(b);
+        a.children.add(c);
+        b.children.add(d);
+        b.children.add(e);
+        c.children.add(g);
+
+        MenuComparation.TreeNode a1 = new MenuComparation.TreeNode("a", 1, true);
+        MenuComparation.TreeNode b1 = new MenuComparation.TreeNode("b", 2, true);
+        MenuComparation.TreeNode c1 = new MenuComparation.TreeNode("c", 3, true);
+        MenuComparation.TreeNode d1 = new MenuComparation.TreeNode("d", 4, true);
+        MenuComparation.TreeNode e1 = new MenuComparation.TreeNode("e", 5, true);
+        MenuComparation.TreeNode f1 = new MenuComparation.TreeNode("f", 6, true);
+        MenuComparation.TreeNode g1 = new MenuComparation.TreeNode("g", 7, false);
+        a1.children.add(b1);
+        a1.children.add(c1);
+        b1.children.add(d1);
+        b1.children.add(e1);
+        b1.children.add(f1);
+        c1.children.add(g1);
+
+        System.out.println(menuComparation.findDifference(a, a1));
+
+
+    }
+
+
+//    private static void testMenu() {
+//        AMenu.Node a = new AMenu.Node("a", 1, true);
+//        AMenu.Node b = new AMenu.Node("b", 2, true);
+//        AMenu.Node c = new AMenu.Node("c", 3, true);
+//        AMenu.Node d = new AMenu.Node("d", 4, true);
+//        AMenu.Node e = new AMenu.Node("e", 5, true);
+//        AMenu.Node g = new AMenu.Node("g", 7, true);
+//
+//        a.children.add(b);
+//        a.children.add(c);
+//
+//        b.children.add(d);
+//        b.children.add(e);
+//
+//        //c.children.add(g);
+//
+//        AMenu.Node a1 = new AMenu.Node("a", 1, true);
+//        AMenu.Node b1 = new AMenu.Node("b", 2, true);
+//        AMenu.Node c1 = new AMenu.Node("c", 3, true);
+//        AMenu.Node d1 = new AMenu.Node("d", 4, true);
+//        AMenu.Node e1 = new AMenu.Node("e", 5, true);
+//        AMenu.Node f1 = new AMenu.Node("f", 6, true);
+//        AMenu.Node g1 = new AMenu.Node("g", 7, false);
+//
+//        a1.children.add(b1);
+//        a1.children.add(c1);
+//
+//        b1.children.add(d1);
+//        //b1.children.add(e1);
+//        //b1.children.add(f1);
+//
+//        c1.children.add(e1);
+//        AMenu aMenu = new AMenu();
+//        int count = aMenu.getModifiedItems(a, a1);
+//        System.out.println("Changed Items are: " + count);
+//    }
+
+    private static void testMenuComparation() {
+        MenuComparation menuComparation = new MenuComparation();
+        MenuComparation.TreeNode a = new MenuComparation.TreeNode("a", 1, true);
+        MenuComparation.TreeNode b = new MenuComparation.TreeNode("b", 2, true);
+        MenuComparation.TreeNode c = new MenuComparation.TreeNode("c", 3, true);
+        MenuComparation.TreeNode d = new MenuComparation.TreeNode("d", 4, true);
+        MenuComparation.TreeNode e = new MenuComparation.TreeNode("e", 5, true);
+        MenuComparation.TreeNode f = new MenuComparation.TreeNode("f", 3, true);
+        a.children.add(b);
+        a.children.add(c);
+        b.children.add(d);
+        b.children.add(e);
+        c.children.add(f);
+
+        MenuComparation.TreeNode a1 = new MenuComparation.TreeNode("a", 1, true);
+        MenuComparation.TreeNode c1 = new MenuComparation.TreeNode("c", 3, false);
+        MenuComparation.TreeNode f1 = new MenuComparation.TreeNode("f", 66, true);
+        a1.children.add(c1);
+        c1.children.add(f1);
+
+        System.out.println(menuComparation.findDifference(a, a1));
+
+
+    }
+
 
     private static void shorestPath() {
         Map<Integer, List<Integer>> map = new HashMap<>();
@@ -61,28 +159,28 @@ public class Main {
 
     private static void testTreeNode() {
         TwoTreeNodeDifference twoTreeNodeDifference = new TwoTreeNodeDifference();
-        TwoTreeNodeDifference.TreeNode root = new TwoTreeNodeDifference.TreeNode("1", "1", true);
-        TwoTreeNodeDifference.TreeNode level1 = new TwoTreeNodeDifference.TreeNode("2", "2", true);
-        TwoTreeNodeDifference.TreeNode level11 = new TwoTreeNodeDifference.TreeNode("4", "4", true);
-        TwoTreeNodeDifference.TreeNode level12 = new TwoTreeNodeDifference.TreeNode("5", "5", true);
+        TwoTreeNodeDifference.TreeNode root = new TwoTreeNodeDifference.TreeNode("1", "1");
+        TwoTreeNodeDifference.TreeNode level1 = new TwoTreeNodeDifference.TreeNode("2", "2");
+        TwoTreeNodeDifference.TreeNode level11 = new TwoTreeNodeDifference.TreeNode("4", "4");
+        TwoTreeNodeDifference.TreeNode level12 = new TwoTreeNodeDifference.TreeNode("5", "5");
 //        TwoTreeNodeDifference.TreeNode level121 =  new  TwoTreeNodeDifference.TreeNode(55, 55, true);
 //        level12.children.add(level121);
         level1.children.add(level11);
         level1.children.add(level12);
-        TwoTreeNodeDifference.TreeNode level2 = new TwoTreeNodeDifference.TreeNode("3", "3", true);
-        TwoTreeNodeDifference.TreeNode level22 = new TwoTreeNodeDifference.TreeNode("6", "6", true);
+        TwoTreeNodeDifference.TreeNode level2 = new TwoTreeNodeDifference.TreeNode("3", "3");
+        TwoTreeNodeDifference.TreeNode level22 = new TwoTreeNodeDifference.TreeNode("6", "6");
         level2.children.add(level22);
         root.children.add(level1);
         root.children.add(level2);
-        TwoTreeNodeDifference.TreeNode root2 = new TwoTreeNodeDifference.TreeNode("1", "1", true);
-        TwoTreeNodeDifference.TreeNode l2 = new TwoTreeNodeDifference.TreeNode("3", "3", false);
-        TwoTreeNodeDifference.TreeNode l22 = new TwoTreeNodeDifference.TreeNode("66", "66", true);
+        TwoTreeNodeDifference.TreeNode root2 = new TwoTreeNodeDifference.TreeNode("1", "1");
+        TwoTreeNodeDifference.TreeNode l2 = new TwoTreeNodeDifference.TreeNode("3", "3");
+        TwoTreeNodeDifference.TreeNode l22 = new TwoTreeNodeDifference.TreeNode("66", "66");
 //        TwoTreeNodeDifference.TreeNode l221 = new  TwoTreeNodeDifference.TreeNode(66, 66, true);
 //        l22.children.add(l221);
         l2.children.add(l22);
         root2.children.add(l2);
 //        System.out.println(twoTreeNodeDifference.countDifferentNode(root, root2));
 
-        System.out.println(twoTreeNodeDifference.compareTheTreeNodes(root, root2));
+        System.out.println(twoTreeNodeDifference.countDifferentNode(root, root2));
     }
 }
