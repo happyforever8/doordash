@@ -6,8 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        testMenuComparation2();
-//        testMenu();
+//        testMenuComparation2();
+        testStoresearch();
+    }
+
+    private static void testStoresearch() {
+        Storesearch storesearch = new Storesearch();
+        System.out.println(Arrays.toString(storesearch.convertToToken(new String[]{"mon 00:01 am", "sun 11:59 pm"})));
     }
 
     private static void testMenuComparation2() {
