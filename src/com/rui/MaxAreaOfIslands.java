@@ -3,6 +3,8 @@ package com.rui;
 public class MaxAreaOfIslands {
 
     // follow-up：如果数组很大，存不进内存如何处理??
+    // Follow-up是问如果矩阵很大没法存到memory怎么办，可以存硬盘上然后maintain一个list of inputStream，
+    //  每个row从硬盘里读。接着问DFS还能不能行？答说不得行因为会有Stack Overflow，应该用BFS，如果queue很大也可‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌以overflow到硬盘上。上周四面的，这周三通知pass。
     public int maxAreaOfIsland(int[][] grid) {
         boolean[][] visited = new boolean[grid.length][grid[0].length];
         int max = 0;
