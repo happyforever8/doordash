@@ -97,8 +97,8 @@ public class Storesearch {
             }
         }
         res.add(end[0]
-                + (end[1] == 0 || end[1] == 5 ? "0" + end[1] : end[1] + "")
-                + (end[2] == 0 || end[2] == 5 ? "0" + end[2] : end[2] + ""));
+                + (start[1] / 10 == 0 ? "0" + end[1] : end[1] + "")
+                + (start[2] / 10 == 0 ? "0" + end[2] : end[2] + ""));
         return res.toArray(String[]::new);
     }
 
