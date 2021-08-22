@@ -28,9 +28,12 @@ public class PackageDependency {
     // 然后找到的路径也有可能不止一条。
     // 如何只 print circular dependency.
 
-
+    // 每个包会给出一些prerequisite。 最终是要求某一个包的安装序列 所以不是所有出现的包都会用到。基本是topological sorting，地里有人说用单纯bfs也行 不过我没写出来。
     // 解法就是，首先找到这个dependency 所在的连通区域，然后从dependency 出发，按照dependency 的顺序，找到所有的节点。再从把图翻过来。容这些节点出发，直到走到这个package
 
+
+    // 这个题的follow up 就是有没有环， 有环用拓扑排序，没有环的情况用bfs
+    // 这个题应该就是类似于course schedule
 //    public List<String> findDependencies (Map<String, List<String>> dependencies, String pack) {
 //        Map<String, List<String>> graph = new HashMap<>();
 //        dfs (dependencies, graph, pack);

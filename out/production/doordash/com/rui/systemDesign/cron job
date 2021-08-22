@@ -1,0 +1,6 @@
+ 设计cron job （就比如有client 给我们的api发信息说我想要定时execute什么内容比如发个邮件etc），如果有很多的jobs req怎么办
+虽然没见过这个题但是把能说的都说了我觉得还挺好
+
+https://segmentfault.com/a/1190000007146045
+
+https://leetcode.com/discuss/general-discussion/1082786/System-Design%3A-Designing-a-distributed-Job-Scheduler-or-Many-interesting-concepts-to-learn

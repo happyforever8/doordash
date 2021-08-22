@@ -1,0 +1,11 @@
+捐款系统，扣款的SLA是7天，指的是从客户提交form到扣款有7天时间。聊了如何避免二次charge。 设计donation s‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌ystem，要统计不同charity的钱数，不难
+ 一开始是没有login 和固定的捐款项目。一般先画一个基本的working， 然后在scale up，加功能， 增加availability之类的。
+
+ 经典的捐款系统， 一开始是没有login 和固定的捐款项目。一般先画一个基本的working， 然后在scale up，加功能， 增加availability之类的。
+
+ Donation Web ApplicationThis is an event that’s going to run for 3 days. We have a static list of 50 charities. During ‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌the event the web app should accept form submissions with the following info:(name, cc #, cvv, address, email, amount, charity). We should NOT store any credit card information in any persistent store (aside from stripe) to avoid a time consuming PCI compliance audit, we can however store the stripe token persistently. We should try to process their payment, the money will go into DD acct. At the end of the 3 days accountants will query DB we establish for records of how much to pay and to whom.
+
+ Stripe (HTTP) APIsstore(cc #, cvv, name, address) -> Result(stripe token) / FailureReason. Very fast and very reliable
+ charge(stripe token, amount[, idempotency key]) /Success/Failure. Very slow and much less reliableCould go down for several hours
+
+ 设计charity donation system，charity event为期三天，可以假设有第三方的payment api可以用，接受donation的organization是给定的，需要在event结束之后对每个org donation情况提供一些统计数据。面试官人很好，一直引导着设计，提问的问题有如何‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌选择数据库、有哪些地方会出错、出错了如何处理。

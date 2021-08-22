@@ -5,6 +5,27 @@ import java.util.*;
 public class TwoTreeNodeDifference {
     // 近期考了好多次
 
+//    Node {
+//   string key,
+//   int value,
+//   list<Node> children;
+//}
+//
+//    curTree     a(4)
+//     b(1)     c(5)
+// d(3) e(5) f(8)    g(12)
+//
+//    newTree    a(4)
+//     b(1)    m(5)
+// e(5) d(3) w(8)   g(12)
+//
+//    find the difference.
+//
+//    解释： 一共5个diff .
+//    c(5)变成了m(5‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌)所有的subTree 都认为变了，一共四个。 c(5), g(12), m(5), g(12)
+//    f(8) 变成了 w(8).
+//    虽然d(3) 和e(5)的顺序变了，但是不影响。
+
     // followup 是问想要知道有多少点被改动了，
     // 这个方法是确定了两棵树加起来有多少个点不一样。
 
@@ -56,6 +77,7 @@ public class TwoTreeNodeDifference {
             return countNode(root1) + countNode(root2);
         }
 
+        // 目前这个解法是，如果value 不一样，那么只统计当前node。但是还要比较后续
         int count = 0;
         if (root1.value != root2.value) {
             count += 1;

@@ -1,0 +1,5 @@
+review系统，用户可以对每个review打分，高分的review可以得到coupon什么的
+
+Review system that can put review on ordered items. Viewers can give like/dislike on specific reviews.
+
+设计一个类似亚麻产品评论，用户可以对一个产品提交评论，可以对别人的评论点赞，可以查看一个产品的所有评论，并且能展示最高赞的几个评论

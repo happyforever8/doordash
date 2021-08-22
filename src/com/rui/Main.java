@@ -7,7 +7,21 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
 //        testMenuComparation2();
-        testStoresearch();
+        testEmployeeFreeTimeWithRange();
+    }
+
+
+    private static void testEmployeeFreeTimeWithRange () {
+        EmployeeFreeTimeWithRange employeeFreeTimeWithRange = new EmployeeFreeTimeWithRange();
+        List<EmployeeFreeTimeWithRange.Interval> l = new ArrayList<>();
+        l.add(new EmployeeFreeTimeWithRange.Interval(1,3));
+        l.add(new EmployeeFreeTimeWithRange.Interval(6,7));
+        l.add(new EmployeeFreeTimeWithRange.Interval(2,4));
+        l.add(new EmployeeFreeTimeWithRange.Interval(2,5));
+        l.add(new EmployeeFreeTimeWithRange.Interval(9,12));
+        List< List<EmployeeFreeTimeWithRange.Interval>> test = new ArrayList<>();
+        test.add(l);
+        System.out.println(employeeFreeTimeWithRange.employeeFreeTime(test, -1, 20));
     }
 
     private static void testStoresearch() {
