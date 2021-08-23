@@ -34,13 +34,53 @@ public class PackageDependency {
 
     // 这个题的follow up 就是有没有环， 有环用拓扑排序，没有环的情况用bfs
     // 这个题应该就是类似于course schedule
-//    public List<String> findDependencies (Map<String, List<String>> dependencies, String pack) {
-//        Map<String, List<String>> graph = new HashMap<>();
-//        dfs (dependencies, graph, pack);
-//    }
+    public List<String> findDependienciesWithCircle (Map<String, List<String>> dependencies, String pack) {
+        Map<String, List<String>> graph = new HashMap<>();
+        Map<String, Integer> indegree = new HashMap<>();
+        for (String key : dependencies.keySet()) {
+            indegree.putIfAbsent(key, 0);
+            for (String v : dependencies.get(key)) {
+                indegree.putIfAbsent(v, 0);
+                graph.putIfAbsent(v, new ArrayList<>());
+                graph.get(v).add(key);
+                indegree.put(key, indegree.get(key) + 1);
+            }
+        }
+        Queue<String> queue = new LinkedList<>();
+        List<String> res = new ArrayList<>();
+        for (String key : indegree.keySet()) {
+            if (indegree.get(key) == 0) {
+                queue.offer(key);
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int l = 0; l < size; l++) {
+                String cur = queue.remove();
+                res.add(cur);
+                if (pack.equals(cur)) {
+                    return res;
+                }
+                if (!graph.containsKey(cur)) {
+                    continue;
+                }
+                for (String neighbor : graph.get(cur)) {
+                    indegree.put(neighbor, indegree.get(neighbor) - 1);
+                    if (indegree.get(neighbor) == 0) {
+                        queue.offer(neighbor);
+                    }
+                }
+            }
+        }
+        // 没找到pack。 或者有环，也就是A depends on B, B depends on A
+        return res.size() == indegree.size() ? res : new ArrayList<>();
+    }
+
+//    public List<String> findDependienciesWithoutCircle (Map<String, List<String>> dependencies, String pack) {
+////         没有环用BFS 就行了。走到有pack 的这一层
 //
-//    private void dfs ((Map<String, List<String>> dependencies,  Map<String, List<String>> graph, String pack) {
-//        List<>
 //    }
+
 
 }

@@ -10,6 +10,7 @@ public class MaxAreaOfIslands {
         int max = 0;
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[0].length; j++) {
+                // 如果0 不算是岛屿的话
                 if (!visited[i][j] && grid[i][j] > 0) {
                     max = Math.max(max, helper (grid, i, j, visited));
                 }

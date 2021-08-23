@@ -7,7 +7,22 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
 //        testMenuComparation2();
-        testEmployeeFreeTimeWithRange();
+        testPackageDependency();
+    }
+
+    private static void testPackageDependency() {
+        PackageDependency packageDependency = new PackageDependency();
+        Map<String, List<String>> dependencies = new HashMap<>();
+//        dependencies.put("A", new ArrayList<>(Arrays.asList("B", "C")));
+//        dependencies.put("B", new ArrayList<>(Arrays.asList("E")));
+//        dependencies.put("C", new ArrayList<>(Arrays.asList("D", "E", "F")));
+//        dependencies.put("D", new ArrayList<>());
+//        dependencies.put("F", new ArrayList<>());
+//        dependencies.put("G", new ArrayList<>(Arrays.asList("C", "F")));
+
+        dependencies.put("A", new ArrayList<>(Arrays.asList("B")));
+        dependencies.put("C", new ArrayList<>(Arrays.asList("A")));
+        System.out.println(packageDependency.findDependienciesWithCircle(dependencies, "C"));
     }
 
 
