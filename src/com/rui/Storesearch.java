@@ -72,6 +72,10 @@ public class Storesearch {
 
     private Map<String, Integer> days;
     public String[] convertToToken(String[] time) {
+        // 可能需要处理输入内容的合法性？ open 在close 之前？
+        if (time == null || time.length == 0) {
+            return new String[0];
+        }
         List<String> res = new ArrayList<>();
         days = new HashMap<>();
         days.put("mon", 1);

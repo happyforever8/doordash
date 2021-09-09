@@ -6,23 +6,75 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-//        testMenuComparation2();
         testPackageDependency();
     }
 
+    private static void testKAnagram() {
+        KAnagram kAnagram = new KAnagram();
+        System.out.println( kAnagram.isKAnagram("anagram", "grammar", 1));
+        System.out.println( kAnagram.isKAnagram("anagram", "grammar", 2));
+
+    }
+
+
+    private static void testMaxProfitConcurrency() {
+        MaxProfitConcurrency maxProfitConcurrency = new MaxProfitConcurrency();
+        int[] startTime = {1,2,3,4,6}, endTime = {3,5,10,6,9}, profit={20,20,100,70,60};
+        System.out.println(maxProfitConcurrency.jobScheduling(startTime,endTime,profit, 3, 10));
+    }
+
+    private static void testBinaryTreeMaximumPathSum() {
+        BinaryTreeMaximumPathSum binaryTreeMaximumPathSum = new BinaryTreeMaximumPathSum();
+        BinaryTreeMaximumPathSum.TreeNode root = new BinaryTreeMaximumPathSum.TreeNode();
+        root.val = 1;
+        root.active = true;
+        BinaryTreeMaximumPathSum.TreeNode l1 = new BinaryTreeMaximumPathSum.TreeNode();
+        l1.val = 2;
+        l1.active = false;
+        BinaryTreeMaximumPathSum.TreeNode l11 = new BinaryTreeMaximumPathSum.TreeNode();
+        l11.val = 4;
+        l11.active = true;
+        BinaryTreeMaximumPathSum.TreeNode l12 = new BinaryTreeMaximumPathSum.TreeNode();
+        l12.val = 5;
+        l12.active = true;
+        BinaryTreeMaximumPathSum.TreeNode r1 = new BinaryTreeMaximumPathSum.TreeNode();
+        r1.val = 3;
+        r1.active = true;
+        BinaryTreeMaximumPathSum.TreeNode r11 = new BinaryTreeMaximumPathSum.TreeNode();
+        r11.val = 6;
+        r11.active = false;
+        BinaryTreeMaximumPathSum.TreeNode r12 = new BinaryTreeMaximumPathSum.TreeNode();
+        r12.val = 7;
+        r12.active = true;
+
+        root.left = l1;
+        root.right = r1;
+        l1.left = l11;
+        l1.right = l12;
+        r1.left = r11;
+        r1.right = r12;
+
+      binaryTreeMaximumPathSum.maxPathSum(root);
+    }
+
+
+
     private static void testPackageDependency() {
         PackageDependency packageDependency = new PackageDependency();
-        Map<String, List<String>> dependencies = new HashMap<>();
-//        dependencies.put("A", new ArrayList<>(Arrays.asList("B", "C")));
-//        dependencies.put("B", new ArrayList<>(Arrays.asList("E")));
-//        dependencies.put("C", new ArrayList<>(Arrays.asList("D", "E", "F")));
-//        dependencies.put("D", new ArrayList<>());
-//        dependencies.put("F", new ArrayList<>());
-//        dependencies.put("G", new ArrayList<>(Arrays.asList("C", "F")));
+        Map<String, List<String>> dependencies1 = new HashMap<>(); // 有环
+        dependencies1.put("A", new ArrayList<>(Arrays.asList("B", "C")));
+        dependencies1.put("B", new ArrayList<>(Arrays.asList("E")));
+        dependencies1.put("C", new ArrayList<>(Arrays.asList("D", "E", "F")));
+        dependencies1.put("D", new ArrayList<>());
+        dependencies1.put("F", new ArrayList<>());
+        dependencies1.put("G", new ArrayList<>(Arrays.asList("C", "F")));
+        System.out.println(packageDependency.findDependienciesWithCircle(dependencies1, "A"));
 
-        dependencies.put("A", new ArrayList<>(Arrays.asList("B")));
-        dependencies.put("C", new ArrayList<>(Arrays.asList("A")));
-        System.out.println(packageDependency.findDependienciesWithCircle(dependencies, "C"));
+
+        Map<String, List<String>> dependencies2 = new HashMap<>(); // 无环
+        dependencies2.put("A", new ArrayList<>(Arrays.asList("B")));
+        dependencies2.put("C", new ArrayList<>(Arrays.asList("A")));
+        System.out.println(packageDependency.findDependienciesWithoutCircle(dependencies2, "C"));
     }
 
 

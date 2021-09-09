@@ -9,3 +9,17 @@
  charge(stripe token, amount[, idempotency key]) /Success/Failure. Very slow and much less reliableCould go down for several hours
 
  设计charity donation system，charity event为期三天，可以假设有第三方的payment api可以用，接受donation的organization是给定的，需要在event结束之后对每个org donation情况提供一些统计数据。面试官人很好，一直引导着设计，提问的问题有如何‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌选择数据库、有哪些地方会出错、出错了如何处理。
+
+ https://forum.acecodeinterview.com/t/topic/47
+
+ https://segmentfault.com/a/1190000018202235
+
+ https://leetcode.com/discuss/interview-question/1397022/Go-Fund-me-System-design
+
+其实要求很简单，就是设计一个system for a 3-day donating event，预计有millions of users，关注方向可能根据面试官因人而异，但我面的时候面试官主要是关注如何scale，有哪几个维度，db scaling的部分可以重点温习一下，我用的是educative.io的system design课，个人觉得还挺实用的
+高频中的高频：
+https://www.1point3acres.com/bbs/thread-795289-1-1.html
+1point3acres.com/bbs/thread-795136-1-1.html
+https://www.1point3acres.com/bbs/thread-794253-1-1.html
+
+要统计不同charity的钱数，不难

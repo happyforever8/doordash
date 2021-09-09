@@ -77,10 +77,47 @@ public class PackageDependency {
         return res.size() == indegree.size() ? res : new ArrayList<>();
     }
 
-//    public List<String> findDependienciesWithoutCircle (Map<String, List<String>> dependencies, String pack) {
-////         没有环用BFS 就行了。走到有pack 的这一层
-//
-//    }
+    public List<String> findDependienciesWithoutCircle (Map<String, List<String>> dependencies, String pack) {
+//         没有环用BFS 就行了。走到有pack 的这一层, indegree 用来确定起始点还是需要的。
+        Map<String, List<String>> graph = new HashMap<>();
+        Map<String, Integer> indegree = new HashMap<>();
+        for (String key : dependencies.keySet()) {
+            indegree.putIfAbsent(key, 0);
+            for (String v : dependencies.get(key)) {
+                indegree.putIfAbsent(v, 0);
+                graph.putIfAbsent(v, new ArrayList<>());
+                graph.get(v).add(key);
+                indegree.put(key, indegree.get(key) + 1);
+            }
+        }
+        Queue<String> queue = new LinkedList<>();
+        List<String> res = new ArrayList<>();
+        for (String key : indegree.keySet()) {
+            if (indegree.get(key) == 0) {
+                queue.offer(key);
+            }
+        }
+
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int l = 0; l < size; l++) {
+                String cur = queue.remove();
+                res.add(cur);
+                if (pack.equals(cur)) {
+                    return res;
+                }
+                if (!graph.containsKey(cur)) {
+                    continue;
+                }
+                for (String neighbor : graph.get(cur)) {
+
+                        queue.offer(neighbor);
+
+                }
+            }
+        }
+        return res;
+    }
 
 
 }
