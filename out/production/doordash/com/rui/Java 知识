@@ -1,0 +1,63 @@
+Java Hasing: https://www.geeksforgeeks.org/hashing-in-java/
+Java  resize (https://www.geeksforgeeks.org/how-do-dynamic-arrays-work/)
+    本质就是变长度的数组如何resize
+    如果原来是数据结构放不下新添加的数据，就新建一个数据结构，长度是原来的一倍，然后copy 老数据到新结构中，然后把指向老数据的stack 的指针，指向新数据。
+    老数据会被garbage collection 回收。
+
+Java Stack and Heap space
+    Key Differences
+    Java Heap Space is used throughout the application, but Stack is only used for the method — or methods — currently running.
+    The Heap Space contains all objects are created, but Stack contains any reference to those objects.
+    Objects stored in the Heap can be accessed throughout the application. Primitive local variables are only accessed the Stack Memory blocks that contain their methods.
+    Memory allocation in the Heap Space is accessed through a complex, young-generation, old-generation system. Stack is accessed through a last-in, first-out (LIFO) memory allocation system.
+    Heap Space exists as long as the application runs and is larger than Stack, which is temporary, but faster.
+    One common indication of a memory leak is the java.lang.OutOfMemoryError exception. Usually, this error is thrown when there is insufficient space to allocate an object in the Java heap. In this case, The garbage collector cannot make space available to accommodate a new object, and the heap cannot be expanded further. Also, this error may be thrown when there is insufficient native memory to support the loading of a Java class. In a rare instance, a java.lang.OutOfMemoryError may be thrown when an excessive amount of time is being spent doing garbage collection and little memory is being freed.
+
+garbage Collection：
+    Garbage collection is the process of looking at heap memory, identifying which objects are in use and which are not, and deleting the unused objects.
+
+java 单继承 多实现 ： 若为多继承，那么当多个父类中有重复的属性或者方法时，子类的调用结果会含糊不清，因此用了单继承。
+
+
+面向对象的特性有哪些？
+答：封装、继承和多态（应要多算一个那就是抽象）
+
+    封装是指将对象的实现细节隐藏起来，然后通过公共的方法来向外暴露出该对象的功能。 但封装不仅仅是 private + getter/setter ，使用封装可以对 setter 进行更深层次的定制，例如你可以对执行方法的对象做规定，也可以对数据做一定的要求，还可以做类型转换等等。使用封装不仅仅安全，更可以简化操作。（封装扩展阅读：oc面向对象三大特性之一 <封装>）
+    继承是面向对象实现软件复用的重要手段，当子类继承父类后，子类是一种特殊的父类，能直接或间接获得父类里的成员。 继承的缺点：1）继承是一种强耦合关系，父类变子类也必须变；2）继承破坏了封装，对于父类而言，它的实现细节对子类来说都是透明的。
+    多态简而言之就是同一个行为具有多个不同表现形式或形态的能力。比如说，有一杯水，我不知道它是温的、冰的还是烫的，但是我一摸我就知道了，我摸水杯的这个动作，对于不同温度的水，就会得到不同的结果，这就是多态。 多态的条件：1）继承；2）重写；3）向上转型。 多态的好处：当把不同的子类对象都当作父类类型来看，可以屏蔽不同子类对象之间的实现差异，从而写出通用的代码达到通用编程，以适应需求的不断变化。（多态扩展阅读：重新认识java（五） ---- 面向对象之多态（向上转型与向下转型））
+    抽象是指从特定的角度出发，从已经存在的一些事物中抽取我们所关注的特性、行为，从而形成一个新的事物的思维过程，是一种从复杂到简洁的思维方式。
+
+JDK JRE JVM
+    Java 运行时环境（JRE-Java Runtime Environment），它包括 Java 虚拟机、Java 核心类库和支持文件，但并不包含开发工具（JDK-Java Development Kit）——编译器、调试器和其他工具。
+    Java 开发工具包（JDK）是完整的 Java 软件开发包，包含了 JRE，编译器和其他的工具（比如 JavaDoc， Java 调试器），可以让开发者开发、编译、执行 Java 应用程序。
+    JVM 是 Java 虚拟机，当我们运行一个程序时，JVM 负责将字节码转换为特定机器代码，JVM 提供了内存管理 / 垃圾回收和安全机制等。
+    这种独立于硬件和操作系统，正是 Java 程序可以一次编写多处执行的原因。
+    1. JDK 用于开发，JRE 用于运行 Java 程序； 2. JDK 和 JRE 中都包含 JVM； 3. JVM 是 Java 编程语言的核心并且具有平台独立性。
+
+Java 中覆盖和重载是什么意思
+    覆盖（Override）是指子类对父类方法的一种重写，只能比父类抛出更少的异常，访问权限不能比父类的小，被覆盖的方法不能是 private 的，否则只是在子类中重新定义了一个新方法。
+    重载（Overload）表示同一个类中可以有多个名称相同的方法，但这些方法的参数列表各不相同。重载的条件： 参数类型不同、参数个数不同、参数顺序不同
+
+抽象类和接口的区别有哪些
+    抽象类中可以没有抽象方法；接口中的方法必须是抽象方法；
+    抽象类中可以有普通的成员变量；接口中的变量必须是 static final 类型的，必须被初始化,接口中只有常量，没有变量。
+    抽象类只能单继承，接口可以继承多个父接口；
+    Java 8 中接口中会有 default 方法，即方法可以被实现。
+
+“static” 关键字是什么意思？
+    答：“static” 关键字表明一个成员变量或者是成员方法可以在没有所属的类的实例变量的情况下被访问。
+
+Java中是否可以覆盖(override)一个 private 或者是 static 的方法？
+    答：Java 中 static 方法不能被覆盖，因为方法覆盖是基于运行时动态绑定的，而 static 方法是编译时静态绑定的。static 方法跟类的任何实例都不相关，所以概念上不适用。
+    Java 中也不可以覆盖 private 的方法，因为 private 修饰的变量和方法只能在当前类中使用，如果是其他的类继承当前类是不能访问到 private 变量或方法的，当然也不能覆盖。
+
+Java 是值传递还是引用传递
+    值传递是对基本型变量而言的,传递的是该变量的一个副本,改变副本不影响原变量。引用传递一般是对于对象型变量而言的,传递的是该对象地址的一个副本, 并不是原对象本身 。
+    ava 内的传递都是值传递.，Java 中实例对象的传递是引用传递，Java 是值传递的！
+
+throw 和 throws 有什么区别？
+    throw 关键字用来在程序中明确的抛出异常，相反，throws 语句用来表明方法不能处理的异常。每一个方法都必须要指定哪些异常不能处理，所以方法的调用者才能够确保处理可能发生的异常，多个异常是用逗号分隔的。
+
+HashMap和Hashtable的区别有哪些？
+    HashMap没有考虑同步，是线程不安全的；Hashtable使用了synchronized关键字，是线程安全的；
+    前者允许null作为Key；后者不允许null作为Key

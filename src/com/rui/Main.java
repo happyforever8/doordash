@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        testPackageDependency();
+        testTreeNode();
     }
 
     private static void testKAnagram() {
@@ -182,7 +182,7 @@ public class Main {
         c.children.add(f);
 
         MenuComparation.TreeNode a1 = new MenuComparation.TreeNode("a", 1, true);
-        MenuComparation.TreeNode c1 = new MenuComparation.TreeNode("c", 3, false);
+        MenuComparation.TreeNode c1 = new MenuComparation.TreeNode("c", 3, true);
         MenuComparation.TreeNode f1 = new MenuComparation.TreeNode("f", 66, true);
         a1.children.add(c1);
         c1.children.add(f1);

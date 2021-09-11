@@ -78,7 +78,7 @@ public class TwoTreeNodeDifference {
             return countNode(newTree) + countNode(oldTree);
         }
 
-        // 目前这个解法是，如果value 不一样，那么只统计当前node。但是还要比较后续
+        // 目前这个解法是，如果value 不一样，那么只统计当前node。但是还要比较他们的child 节点
         int count = 0;
         if (newTree.value != oldTree.value) {
             count += 1;
@@ -88,15 +88,13 @@ public class TwoTreeNodeDifference {
         // 我觉得排序不好。原因是，[1,2,3,4], [2,3,4] 这样[2,3,4] 不能对上
         // 所以要一个一个key 的匹配。
         Map<String, TreeNode> map = new HashMap<>();
-        for (TreeNode n : oldTree.children) {
+        for (TreeNode n : newTree.children) {
             map.put(n.key, n);
         }
-        for (TreeNode n : newTree.children) {
+        for (TreeNode n : oldTree.children) {
             if (map.containsKey(n.key)) {
-                count += countDifferentNode(n, map.get(n.key));
+                count += countDifferentNode(map.getOrDefault(n.key, null), n);
                 map.remove(n.key);
-            } else {
-                count += countNode(n);
             }
         }
         for (TreeNode v : map.values()) {
