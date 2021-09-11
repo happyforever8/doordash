@@ -54,6 +54,9 @@ public class TwoTreeNodeDifference {
     *
     *
     * */
+
+    // 目前这个解法对于test case 是对的
+
     static class TreeNode { // 这个是定义好的
         String value;
         String key;
@@ -92,10 +95,8 @@ public class TwoTreeNodeDifference {
             map.put(n.key, n);
         }
         for (TreeNode n : oldTree.children) {
-            if (map.containsKey(n.key)) {
-                count += countDifferentNode(map.getOrDefault(n.key, null), n);
-                map.remove(n.key);
-            }
+            count += countDifferentNode(map.getOrDefault(n.key, null), n);
+            map.remove(n.key);
         }
         for (TreeNode v : map.values()) {
             count += countNode(v);

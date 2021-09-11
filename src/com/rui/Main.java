@@ -245,22 +245,22 @@ public class Main {
 
     private static void testTreeNode() {
         TwoTreeNodeDifference twoTreeNodeDifference = new TwoTreeNodeDifference();
-        TwoTreeNodeDifference.TreeNode root = new TwoTreeNodeDifference.TreeNode("1", "1");
-        TwoTreeNodeDifference.TreeNode level1 = new TwoTreeNodeDifference.TreeNode("2", "2");
-        TwoTreeNodeDifference.TreeNode level11 = new TwoTreeNodeDifference.TreeNode("4", "4");
-        TwoTreeNodeDifference.TreeNode level12 = new TwoTreeNodeDifference.TreeNode("5", "5");
+        TwoTreeNodeDifference.TreeNode root = new TwoTreeNodeDifference.TreeNode("a", "1");
+        TwoTreeNodeDifference.TreeNode level1 = new TwoTreeNodeDifference.TreeNode("b", "2");
+        TwoTreeNodeDifference.TreeNode level11 = new TwoTreeNodeDifference.TreeNode("d", "4");
+        TwoTreeNodeDifference.TreeNode level12 = new TwoTreeNodeDifference.TreeNode("e", "5");
 //        TwoTreeNodeDifference.TreeNode level121 =  new  TwoTreeNodeDifference.TreeNode(55, 55, true);
 //        level12.children.add(level121);
         level1.children.add(level11);
         level1.children.add(level12);
-        TwoTreeNodeDifference.TreeNode level2 = new TwoTreeNodeDifference.TreeNode("3", "3");
-        TwoTreeNodeDifference.TreeNode level22 = new TwoTreeNodeDifference.TreeNode("6", "6");
+        TwoTreeNodeDifference.TreeNode level2 = new TwoTreeNodeDifference.TreeNode("c", "3");
+        TwoTreeNodeDifference.TreeNode level22 = new TwoTreeNodeDifference.TreeNode("f", "6");
         level2.children.add(level22);
         root.children.add(level1);
         root.children.add(level2);
-        TwoTreeNodeDifference.TreeNode root2 = new TwoTreeNodeDifference.TreeNode("1", "1");
-        TwoTreeNodeDifference.TreeNode l2 = new TwoTreeNodeDifference.TreeNode("3", "3");
-        TwoTreeNodeDifference.TreeNode l22 = new TwoTreeNodeDifference.TreeNode("66", "66");
+        TwoTreeNodeDifference.TreeNode root2 = new TwoTreeNodeDifference.TreeNode("a", "1");
+        TwoTreeNodeDifference.TreeNode l2 = new TwoTreeNodeDifference.TreeNode("c", "3");
+        TwoTreeNodeDifference.TreeNode l22 = new TwoTreeNodeDifference.TreeNode("f", "6");
 //        TwoTreeNodeDifference.TreeNode l221 = new  TwoTreeNodeDifference.TreeNode(66, 66, true);
 //        l22.children.add(l221);
         l2.children.add(l22);
