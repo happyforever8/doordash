@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        testTreeNode();
+        testStoresearch();
     }
 
     private static void testKAnagram() {
@@ -93,7 +93,10 @@ public class Main {
 
     private static void testStoresearch() {
         Storesearch storesearch = new Storesearch();
-        System.out.println(Arrays.toString(storesearch.convertToToken(new String[]{"mon 00:01 am", "sun 11:59 pm"})));
+//        System.out.println(Arrays.toString(storesearch.convertToToken(new String[]{"mon 00:00 am", "sun 11:59 pm"})));
+//        Storesearch.Day d1 = new Storesearch.Day("mon", "00:00 am", "11:59 pm");
+        Storesearch.Day d2 = new Storesearch.Day("tue", "12:00 pm", "11:59 pm");
+        System.out.println(Arrays.toString(storesearch.convertToTokenByDay(new Storesearch.Day[]{d2})));
     }
 
     private static void testMenuComparation2() {
