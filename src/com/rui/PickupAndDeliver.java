@@ -12,37 +12,19 @@ public class PickupAndDeliver {
     // leetcode 这个题是计算数量。面经里面都是输出所有的组合。
 
 
-    // 首先是计算数量
-    // lee215 的解法
-    /*
-    *
-      Stage 1
-        We decide the order of all the pickups. It is trivial to tell there are n! possibilities
-      Stage 2
-        Given one possibility. Let's say the pickups are ordered like this A B C
-        We can now insert the corresponding deliveries one by one.
-        We start with the last pickup we made, namely, insert c, and there is only 1 valid slot.
-        A B C c
-        We continue with the second last pickup we made, namely, insert b, and there are 3 valid slots.
-        A B x C x c x (where x denotes the location of valid slots for b)
-        Let's only consider one case A B C c b. We continue with the third last pickup we made, namely, insert a, and there are 5 valid slots.
-        A x B x C x c x b x, (where x denotes the location of valid slots for a)
-        In conclusion. we have in total 1 * 3 * 5 * ... * (2n-1) possibilities
-        Thus, the final solution is n! * (1 * 3 * 5 * ... * (2n-1)) % 1000000007
-        *
-Pickup possible value = n! (permutation)
-Delivery possible value = 135*..2n-1
-=> (1×2×3×4×…(2𝑛))/ (2×4×6×…×(2𝑛))
-=> (2𝑛)! /(2^𝑛)𝑛!
-*
-*
-* 先不要展开，当n >= 2时，
-S(n) = (2n - 1) * n * S(n - 1)
-= (2n - 1) * n * (2(n - 1) -1) * (n - 1) * S(n - 2)
-整理一下，
-S(n) = ((2n - 1) * (2n - 3) * ... * 3) * (n * (n - 1) * ... * 2) * S(1) (S(1) 也符合通项公式，所以可以直接带入化简）
-= (2n - 1)!/((2^( n - 1)) * (n - 1)!) * n!
-    * */
+//    Intuition 2
+//    We consider the first element in all 2n elements.
+//    The first must be a pickup, and we have n pickups as chioce.
+//    Its pair can be any position in the rest of n*2-1 positions.
+//    So it's (n * 2 - 1) * n.
+//
+//
+//    Intuition 3
+//    The total number of all permutation obviously eauqls to 2n!.
+//    For each pair, the order is determined, so we need to divide by 2.
+//    So the final result is (2n)!/(2^n)
+// length of output。 f(n-1)*(‍‍‍‍‍‍‍‍‌‍‌‌‍‌‌‌‌‌ (2n-1) + (2n-2) + ... + 1) = f(n-1)(n(2n-1)) = n!*(factorial of odd number) = n!((2n)!/n!2^n) = (2n)!/2^n
+//                n=1: 1; n=2: 2!*3!; n=3: 3!*5!
     public int countOrders(int n) {
         long res = 1, mod = (long)1e9 + 7;
         for (int i = 1; i <= n; ++i)

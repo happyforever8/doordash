@@ -6,8 +6,12 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        testStoresearch();
+        testMenuComparation();
+        testMenuComparation2();
     }
+
+
+
 
     private static void testKAnagram() {
         KAnagram kAnagram = new KAnagram();
@@ -91,11 +95,11 @@ public class Main {
         System.out.println(employeeFreeTimeWithRange.employeeFreeTime(test, -1, 20));
     }
 
-    private static void testStoresearch() {
+    private static void testStoresearch() { // 测过了，改过了
         Storesearch storesearch = new Storesearch();
 //        System.out.println(Arrays.toString(storesearch.convertToToken(new String[]{"mon 00:00 am", "sun 11:59 pm"})));
 //        Storesearch.Day d1 = new Storesearch.Day("mon", "00:00 am", "11:59 pm");
-        Storesearch.Day d2 = new Storesearch.Day("tue", "12:00 pm", "11:59 pm");
+        Storesearch.Day d2 = new Storesearch.Day("tue", "00:00 am", "12:05 pm");
         System.out.println(Arrays.toString(storesearch.convertToTokenByDay(new Storesearch.Day[]{d2})));
     }
 
@@ -177,7 +181,7 @@ public class Main {
         MenuComparation.TreeNode c = new MenuComparation.TreeNode("c", 3, true);
         MenuComparation.TreeNode d = new MenuComparation.TreeNode("d", 4, true);
         MenuComparation.TreeNode e = new MenuComparation.TreeNode("e", 5, true);
-        MenuComparation.TreeNode f = new MenuComparation.TreeNode("f", 3, true);
+        MenuComparation.TreeNode f = new MenuComparation.TreeNode("f", 6, true);
         a.children.add(b);
         a.children.add(c);
         b.children.add(d);
@@ -185,7 +189,7 @@ public class Main {
         c.children.add(f);
 
         MenuComparation.TreeNode a1 = new MenuComparation.TreeNode("a", 1, true);
-        MenuComparation.TreeNode c1 = new MenuComparation.TreeNode("c", 3, true);
+        MenuComparation.TreeNode c1 = new MenuComparation.TreeNode("c", 3, false);
         MenuComparation.TreeNode f1 = new MenuComparation.TreeNode("f", 66, true);
         a1.children.add(c1);
         c1.children.add(f1);
@@ -196,7 +200,7 @@ public class Main {
     }
 
 
-    private static void shorestPath() {
+    private static void shorestPath() { // 这个例子是对的
         Map<Integer, List<Integer>> map = new HashMap<>();
         map.put(1, new ArrayList<>(Arrays.asList(1,2,1)));
         map.put(2, new ArrayList<>(Arrays.asList(2,3,1)));
@@ -207,7 +211,6 @@ public class Main {
         map.put(7, new ArrayList<>(Arrays.asList(2,4,4)));
         List<Integer> cities = new ArrayList<>(Arrays.asList(1,5));
         ShortestRoute shortestRoute = new ShortestRoute();
-        System.out.println(Arrays.toString(shortestRoute.shortestPathRui(map, cities)));
         System.out.println(Arrays.toString(shortestRoute.shortestPath(map, cities)));
     }
 
@@ -246,7 +249,7 @@ public class Main {
         System.out.println(pickupAndDeliver.isValidPickupDeliverSequence(new String[]{"P1", "D1", "P1", "D1"}));
     }
 
-    private static void testTreeNode() {
+    private static void testTreeNode() { // 测过了，改过了
         TwoTreeNodeDifference twoTreeNodeDifference = new TwoTreeNodeDifference();
         TwoTreeNodeDifference.TreeNode root = new TwoTreeNodeDifference.TreeNode("a", "1");
         TwoTreeNodeDifference.TreeNode level1 = new TwoTreeNodeDifference.TreeNode("b", "2");
@@ -263,7 +266,7 @@ public class Main {
         root.children.add(level2);
         TwoTreeNodeDifference.TreeNode root2 = new TwoTreeNodeDifference.TreeNode("a", "1");
         TwoTreeNodeDifference.TreeNode l2 = new TwoTreeNodeDifference.TreeNode("c", "3");
-        TwoTreeNodeDifference.TreeNode l22 = new TwoTreeNodeDifference.TreeNode("f", "6");
+        TwoTreeNodeDifference.TreeNode l22 = new TwoTreeNodeDifference.TreeNode("f", "66");
 //        TwoTreeNodeDifference.TreeNode l221 = new  TwoTreeNodeDifference.TreeNode(66, 66, true);
 //        l22.children.add(l221);
         l2.children.add(l22);

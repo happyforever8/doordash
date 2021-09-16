@@ -26,8 +26,7 @@ public class TwoTreeNodeDifference {
 //    f(8) 变成了 w(8).
 //    虽然d(3) 和e(5)的顺序变了，但是不影响。
 
-    // followup 是问想要知道有多少点被改动了，
-
+    // followup 是问想要知道有多少点被改动
     // 题目：给定两个n叉树，求这两个树之间有多少个节点差异。
     // 树的node 是定义好的。
     // 时间复杂度就是树node 的个数。两棵树加起来
@@ -68,7 +67,7 @@ public class TwoTreeNodeDifference {
         }
     }
     // 这个方法是用来判断两个tree 之间总共有多少个node 不一样，而不是相对于某一个tree
-
+    // 这个题的时间复杂度是n + m, 因为我们遍历了两棵树所有的点。
     public int countDifferentNode(TreeNode newTree, TreeNode oldTree) {
         if (newTree == null && oldTree == null) {
             return 0;

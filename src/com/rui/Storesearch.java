@@ -82,6 +82,7 @@ public class Storesearch {
 
     private Map<String, String> days;
     // 这个是每天的营业时间不一样
+    // 这个题的时间复杂度可以认定为常数，因为7天有多少个5min 的interval 是常数。
     public String[] convertToTokenByDay(Day[] day) {
         if (day == null || day.length == 0) {
             return new String[0];

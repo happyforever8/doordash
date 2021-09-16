@@ -134,7 +134,9 @@ NO
     // 这个题是无向图
 
     // map 里面的list 存的是，<from, to, end>, cities 里面存的是str 和dst
-    public boolean[] shortestPathRui (Map<Integer, List<Integer>> edges, List<Integer> cities) {
+    // dijkstra 的意义是把从str 到dst 所有经过的点的到str 的最短路径都求出来了
+
+    public boolean[] shortestPath (Map<Integer, List<Integer>> edges, List<Integer> cities) {
         // 这个题不知道可不能有重复路径出现，例如1 -> 2 有三条不同的路。
         // 所以可以保存成from to roadIndex -> weight
         Map<Integer, List<int[]>> map = new HashMap<>();
@@ -149,7 +151,7 @@ NO
         int shortestPath = Integer.MAX_VALUE;
         // bfs 的目的是为了计算从str 到dst 的最短路径。
         Set<Integer> visited = new HashSet<>();
-        // 这里一定要注意是按照最短路径排序。
+        // 这里一定要注意是按照最短路径排序。 Dijkstra 的时间复杂度位O（(n + E) * logn）, n 是所有的点，E 是for 循环执行的次数。
         PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]); // <node, shortestRoute>
         pq.offer(new int[]{cities.get(0), 0});
         while (!pq.isEmpty()){
@@ -166,7 +168,7 @@ NO
                 }
             }
         }
-
+        // O(2^shortestPath), 因为要遍历所有的从str 到des 的路径。找到所有路径中经过的city。
         boolean[] res = new boolean[edges.size()];
         helper(cities.get(0), cities.get(1), map, shortestPath, res, new HashSet<>());
         return res;
@@ -194,58 +196,6 @@ NO
     }
 
 
-
-
-
-    // given a map of bidrectional routes
-    // find a shortest path
-    // 这个解法不是Dijkstra
-    public boolean[] shortestPath(Map<Integer, List<Integer>> map, List<Integer> cities) {
-        // 1 (1, 2, 1)
-        // 1 -> [2, 1, 1]
-        Map<Integer, List<int[]>> graph = new HashMap<>();
-
-        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-            int road = entry.getKey();
-            List<Integer> value = entry.getValue();
-            int from = value.get(0);
-            int to = value.get(1);
-            int weight = value.get(2);
-
-            graph.computeIfAbsent(from, k -> new ArrayList<>()).add(new int[]{to, weight, road});
-            graph.computeIfAbsent(to, k -> new ArrayList<>()).add(new int[]{from, weight, road});
-        }
-
-// [city_id, sumOfWeight]
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
-        Set<Integer> visited = new HashSet<>();
-        pq.offer(new int[]{cities.get(0), 0});
-        int targetCity = cities.get(cities.size() - 1);
-        int lowestWeight = 0;
-
-        while (!pq.isEmpty()) {
-            int[] entry = pq.poll();
-
-            if (entry[0] == targetCity) {
-                lowestWeight = entry[1];
-                break;
-            }
-
-            visited.add(entry[0]);
-
-            for (int[] neis : graph.get(entry[0])) {
-                if (!visited.contains(neis[0])) {
-                    pq.offer(new int[]{neis[0], entry[1] + neis[1]});
-                }
-            }
-        }
-
-        boolean[] res = new boolean[map.size()];
-
-        dfs(cities.get(0), targetCity, graph, lowestWeight, res, new HashSet<>());
-        return res;
-    }
-
     private void dfs(int from, int target, Map<Integer, List<int[]>> graph, int weight, boolean[] res, Set<Integer> roads) {
         if (weight < 0) {
             return;
@@ -266,5 +216,61 @@ NO
             }
         }
     }
+
+
+
+
+
+
+
+
+
+    // given a map of bidrectional routes
+    // find a shortest path
+//    public boolean[] shortestPath(Map<Integer, List<Integer>> map, List<Integer> cities) {
+//        // 1 (1, 2, 1)
+//        // 1 -> [2, 1, 1]
+//        Map<Integer, List<int[]>> graph = new HashMap<>();
+//
+//        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
+//            int road = entry.getKey();
+//            List<Integer> value = entry.getValue();
+//            int from = value.get(0);
+//            int to = value.get(1);
+//            int weight = value.get(2);
+//
+//            graph.computeIfAbsent(from, k -> new ArrayList<>()).add(new int[]{to, weight, road});
+//            graph.computeIfAbsent(to, k -> new ArrayList<>()).add(new int[]{from, weight, road});
+//        }
+//
+//// [city_id, sumOfWeight]
+//        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[1] - b[1]);
+//        Set<Integer> visited = new HashSet<>();
+//        pq.offer(new int[]{cities.get(0), 0});
+//        int targetCity = cities.get(cities.size() - 1);
+//        int lowestWeight = 0;
+//
+//        while (!pq.isEmpty()) {
+//            int[] entry = pq.poll();
+//
+//            if (entry[0] == targetCity) {
+//                lowestWeight = entry[1];
+//                break;
+//            }
+//
+//            visited.add(entry[0]);
+//
+//            for (int[] neis : graph.get(entry[0])) {
+//                if (!visited.contains(neis[0])) {
+//                    pq.offer(new int[]{neis[0], entry[1] + neis[1]});
+//                }
+//            }
+//        }
+//
+//        boolean[] res = new boolean[map.size()];
+//
+//        dfs(cities.get(0), targetCity, graph, lowestWeight, res, new HashSet<>());
+//        return res;
+//    }
 
 }

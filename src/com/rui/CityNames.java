@@ -84,7 +84,8 @@ public class CityNames {
             }
 
             Map.Entry<Integer, String> prevYEntry = sameY.get(city.y).lowerEntry(city.x);
-            if (prevYEntry != null){
+            if (prevYEntry != null){ // 这里写反了
+                
                 pq.offer(new City(city.x, prevYEntry.getKey(), prevYEntry.getValue()));
             }
             Map.Entry<Integer, String> nextYEntry = sameY.get(city.y).higherEntry(city.x);

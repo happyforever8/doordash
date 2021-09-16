@@ -1,0 +1,4 @@
+查询 doordash  下单
+
+从设计REST API. 开始 但是很快就开始讨论一些细节 比如cache的一致性保证， application server的状态存储。
+https://segmentfault.com/a/1190000018828634

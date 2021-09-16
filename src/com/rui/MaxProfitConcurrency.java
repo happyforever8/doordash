@@ -3,7 +3,7 @@ package com.rui;
 import java.util.*;
 
 public class MaxProfitConcurrency {
-    //
+    // 这个就是leetcode 题，面经里面说会有一个时间范围的限制
     public int jobScheduling(int[] startTime, int[] endTime, int[] profit) {
         int[][] combination = new int[startTime.length][3];
         for (int i = 0; i < startTime.length; i++) {
